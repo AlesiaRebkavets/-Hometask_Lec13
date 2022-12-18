@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hometask_Lec13
+namespace Hometask
 {
     public class Class1
     {
