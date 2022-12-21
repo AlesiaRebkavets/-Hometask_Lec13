@@ -11,12 +11,7 @@ namespace Hometask.Pages
         private By permanentAddressTextBoxLocator = By.Id("permanentAddress");
         private By submitButtonLocator = By.Id("submit");
         private By currentAddressResultLocator = By.XPath("//p[@id='currentAddress']");
-        
-        public TextBoxPage(IWebDriver _driver) : base(_driver) { }
 
-        public static string GetTextBoxPageHeader()
-        {
-            return _driver.FindElement(_textBoxPageHeader).Text;
-        }
+        public static string GetTextBoxPageHeader() => Driver().FindElement(_textBoxPageHeader).Text;
     }
 }

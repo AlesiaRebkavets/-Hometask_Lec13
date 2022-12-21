@@ -62,7 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="BrowserUtils\Browser.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\TextBoxPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
