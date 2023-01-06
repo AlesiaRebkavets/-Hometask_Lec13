@@ -12,13 +12,13 @@ namespace Hometask.Tests
         public void SetUp()
         {
             Browser.Maximize();
-            Browser.SetImplicitlyWait();        // implicit timeout is 30 sec
+            Browser.SetImplicitlyWait();        // implicit timeout is 20 sec
         }
 
         [OneTimeTearDown]
         public void TearDown()
         {
-            Browser.Quit();               // close driver after executing all the tests
+            Browser.Quit();                     // close driver after executing of all the tests
         }
     }
 }

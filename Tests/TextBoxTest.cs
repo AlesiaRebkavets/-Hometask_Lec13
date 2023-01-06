@@ -6,14 +6,14 @@ namespace Hometask.Tests
     public class TextBoxTest: BaseTest
     {
         [Test]
-        public void TextBoxElementPageIsOpened()    // todo: 
+        public void TextBoxElementPageIsOpened()    // verifying that TextBox Element page is opened successfully
         {
             TextBoxPage.OpenTextBoxPage();
             Assert.IsTrue(TextBoxPage.GetTextBoxPageHeader().Equals("Text Box"));
         }
 
         [Test]
-        public void IsFormFilledAndSubmitted()    
+        public void IsFormFilledAndSubmitted()     // verifying that form is filled and submitted successfully
         {
             TextBoxPage.OpenTextBoxPage();
             TextBoxPage.EnterFullName("Vasya");
