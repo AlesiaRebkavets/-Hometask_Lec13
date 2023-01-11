@@ -6,7 +6,8 @@ namespace Hometask.Tests
     public class CheckBoxTest: BaseTest
     {
         [Test]
-        public void IsCheckBoxElementSelected()             // verifying that CheckBox elements are successfully checked
+        // verifying that CheckBox elements are successfully checked
+        public void IsCheckBoxElementSelected()             
         {
             CheckBoxPage.OpenCheckBoxPage();
             CheckBoxPage.ClickHomeCollapseButton();

@@ -1,8 +1,4 @@
-﻿using System;
-using Hometask.Pages;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Hometask.Tests
 {
@@ -10,15 +6,17 @@ namespace Hometask.Tests
     {
         [OneTimeSetUp]
         public void SetUp()
+        // initial setup
         {
             Browser.Maximize();
-            Browser.SetImplicitlyWait();        // implicit timeout is 20 sec
+            Browser.SetImplicitlyWait();        // set implicit timeout 
         }
 
         [OneTimeTearDown]
+        // close driver after executing of all the tests
         public void TearDown()
         {
-            Browser.Quit();                     // close driver after executing of all the tests
+            Browser.Quit();                    
         }
     }
 }

@@ -6,7 +6,8 @@ namespace Hometask.Tests
     public class LinksTest: BaseTest
     {
         [Test]
-        public void FollowingHomeLink()                   // performing click on 'Home' link
+        // performing click on 'Home' link
+        public void FollowingHomeLink()                   
         {
             LinksPage.OpenLinksPage();
             LinksPage.ClickHomeLink();
@@ -14,7 +15,8 @@ namespace Hometask.Tests
         }
         
         [Test]
-        public void FollowingHomeijmOALink()              // performing click on 'HomeijmOA' link
+        // performing click on 'HomeijmOA' link
+        public void FollowingHomeijmOALink()              
         {
             LinksPage.OpenLinksPage();
             LinksPage.ClickHomeijmOALink();
@@ -23,19 +25,13 @@ namespace Hometask.Tests
         }
         
         [Test]
-        public void FollowingCreatedLink()                // performing click on 'Created' link
+        // performing click on 'Created' link
+        public void FollowingCreatedLink()                
         {
             LinksPage.OpenLinksPage();
             LinksPage.ClickCreatedLink();
             Assert.AreEqual("201", LinksPage.GetTextOfResponseStatusCode());
             Assert.AreEqual("Created", LinksPage.GetTextOfResponseStatusText());
         }
-
-        
-        
-        
-        
-        
-        
     }
 }

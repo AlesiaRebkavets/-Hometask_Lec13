@@ -6,15 +6,17 @@ namespace Hometask.Tests
     public class RadioButtonTest: BaseTest
     {
         [Test]
-        public void IsYouHaveSelectedLabelDisplayed()                          // verifying that YouHaveSelected label is displayed
-        {                                                                      // when any Radio Button is checked
+        // verifying that YouHaveSelected label is displayed when any Radio Button is checked
+        public void IsYouHaveSelectedLabelDisplayed()                         
+        {                                                                    
             RadioButtonPage.OpenRadioButtonPage();
             RadioButtonPage.ClickImpressiveRadioButton();
             Assert.IsTrue(RadioButtonPage.IsYouHaveSelectedLabelDisplayed());
         }
         
         [Test]
-        public void SelectRadioButton()                                        // verifying that Radio Button was successfully checked
+        // verifying that Radio Button was successfully checked
+        public void SelectRadioButton()                                        
         {
             RadioButtonPage.OpenRadioButtonPage();
             RadioButtonPage.ClickImpressiveRadioButton();

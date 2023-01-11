@@ -2,9 +2,10 @@
 
 namespace Hometask.Pages
 {
-    public class WebTablesPage : BasePage
+    public class WebTablesPage : Browser
     {
         // saving locators of WebTables page
+        private const string WebTablesPageUrl = "https://demoqa.com/webtables";
         private static By _addButtonLocator = By.Id("addNewRecordButton");
         private static By _registrationFormModalLabelLocator = By.Id("registration-form-modal");
         private static By _firstNameTextBoxLocator = By.Id("firstName");
@@ -16,74 +17,51 @@ namespace Hometask.Pages
         private static By _submitButtonLocator = By.Id("submit");
 
         private static By _firstNameTableColumnLocator =
-            By.XPath("//div[@role=\"rowgroup\"][4]//div[@role=\"gridcell\"][1]");
+            By.XPath("//*[@role=\"rowgroup\"][4]//*[@role=\"gridcell\"][1]");
 
         private static By _lastNameTableColumnLocator =
-            By.XPath("//div[@role=\"rowgroup\"][4]//div[@role=\"gridcell\"][2]");
+            By.XPath("//*[@role=\"rowgroup\"][4]//*[@role=\"gridcell\"][2]");
 
-        private static By _ageTableColumnLocator = By.XPath("//div[@role=\"rowgroup\"][4]//div[@role=\"gridcell\"][3]");
+        private static By _ageTableColumnLocator = By.XPath("//*[@role=\"rowgroup\"][4]//*[@role=\"gridcell\"][3]");
 
         private static By _emailTableColumnLocator =
-            By.XPath("//div[@role=\"rowgroup\"][4]//div[@role=\"gridcell\"][4]");
+            By.XPath("//*[@role=\"rowgroup\"][4]//*[@role=\"gridcell\"][4]");
 
         private static By _salaryTableColumnLocator =
-            By.XPath("//div[@role=\"rowgroup\"][4]//div[@role=\"gridcell\"][5]");
+            By.XPath("//*[@role=\"rowgroup\"][4]//*[@role=\"gridcell\"][5]");
 
         private static By _departmentTableColumnLocator =
-            By.XPath("//div[@role=\"rowgroup\"][4]//div[@role=\"gridcell\"][6]");
+            By.XPath("//*[@role=\"rowgroup\"][4]//*[@role=\"gridcell\"][6]");
 
-        public static void OpenWebTablesPage() // method opens WebTables page
-        {
-            OpenBasePage();
-            OpenElementsPage();
-            OpenWebTablesElementPage();
-        }
+        public static void OpenWebTablesPage() => Driver().Navigate().GoToUrl(WebTablesPageUrl);
+        // method opens WebTables page
 
-        public static void ClickAddButton() // method clicks Add Button
-        {
-            Driver().FindElement(_addButtonLocator).Click();
-        }
+        public static void ClickAddButton() => Driver().FindElement(_addButtonLocator).Click();
+        // method clicks Add Button
 
-        public static bool
-            IsRegistrationFormModalLabelDisplayed() // returns "true" if Registration Form Modal is opened (Registration Form Modal Label is displayed)
-        {
-            return Driver().FindElement(_registrationFormModalLabelLocator).Displayed;
-        }
+        public static bool IsRegistrationFormModalLabelDisplayed() => Driver().FindElement(_registrationFormModalLabelLocator).Displayed;
+        // returns "true" if Registration Form Modal is opened (Registration Form Modal Label is displayed)
 
-        public static void SetFirstNameValue(string firstName) // entering value to First Name field
-        {
-            Driver().FindElement(_firstNameTextBoxLocator).SendKeys(firstName);
-        }
+        public static void SetFirstNameValue(string firstName) => Driver().FindElement(_firstNameTextBoxLocator).SendKeys(firstName);
+        // entering value to First Name field
 
-        public static void SetLastNameValue(string lastName) // entering value to Last Name field
-        {
-            Driver().FindElement(_lastNameTextBoxLocator).SendKeys(lastName);
-        }
+        public static void SetLastNameValue(string lastName) => Driver().FindElement(_lastNameTextBoxLocator).SendKeys(lastName);
+        // entering value to Last Name field
 
-        public static void SetEmailValue(string email) // entering value to Email field
-        {
-            Driver().FindElement(_emailTextBoxLocator).SendKeys(email);
-        }
+        public static void SetEmailValue(string email) => Driver().FindElement(_emailTextBoxLocator).SendKeys(email);
+        // entering value to Email field
 
-        public static void SetAgeValue(string age) // entering value to Age field
-        {
-            Driver().FindElement(_ageTextBoxLocator).SendKeys(age);
-        }
+        public static void SetAgeValue(string age) => Driver().FindElement(_ageTextBoxLocator).SendKeys(age);
+        // entering value to Age field
 
-        public static void SetSalaryValue(string salary) // entering value to Salary field
-        {
-            Driver().FindElement(_salaryTextBoxLocator).SendKeys(salary);
-        }
+        public static void SetSalaryValue(string salary) => Driver().FindElement(_salaryTextBoxLocator).SendKeys(salary);
+        // entering value to Salary field
 
-        public static void SetDepartmentValue(string department) // entering value to Department field
-        {
-            Driver().FindElement(_departmentTextBoxLocator).SendKeys(department);
-        }
+        public static void SetDepartmentValue(string department) => Driver().FindElement(_departmentTextBoxLocator).SendKeys(department);
+        // entering value to Department field
 
-        public static void ClickSubmitButton() // method clicks Submit Button
-        {
-            Driver().FindElement(_submitButtonLocator).Click();
-        }
+        public static void ClickSubmitButton() => Driver().FindElement(_submitButtonLocator).Click();
+        // method clicks Submit Button
 
         public static string GetFirstNameTableColumnValue() => Driver().FindElement(_firstNameTableColumnLocator).Text;
         // method returns value of First Name table column
@@ -100,8 +78,7 @@ namespace Hometask.Pages
         public static string GetSalaryTableColumnValue() => Driver().FindElement(_salaryTableColumnLocator).Text;
         // method returns value of Salary table column
 
-        public static string GetDepartmentTableColumnValue() =>
-            Driver().FindElement(_departmentTableColumnLocator).Text;
+        public static string GetDepartmentTableColumnValue() =>  Driver().FindElement(_departmentTableColumnLocator).Text;
         // method returns value of Department table column
     }
 }

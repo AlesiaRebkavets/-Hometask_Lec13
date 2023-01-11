@@ -6,7 +6,8 @@ namespace Hometask.Tests
     public class WebTablesTest: BaseTest
     {
         [Test]
-        public void IsRegistrationFormModalDisplayed()          // verifying that new row is added to a WebTable
+        // verifying that new row is added to a WebTable
+        public void IsRegistrationFormModalDisplayed()          
         {
             WebTablesPage.OpenWebTablesPage();
             WebTablesPage.ClickAddButton();
@@ -14,8 +15,9 @@ namespace Hometask.Tests
         }
 
         [Test]
-        public void AddRowToAWebTable()                          // verifying that new row is added to a WebTable
-        {                                                        // and correct data was entered
+        // verifying that new row is added to a WebTable and correct data was entered
+        public void AddRowToAWebTable()
+        {
             WebTablesPage.OpenWebTablesPage();
             WebTablesPage.ClickAddButton();
             WebTablesPage.SetFirstNameValue("Walter");

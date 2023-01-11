@@ -6,8 +6,9 @@ namespace Hometask.Tests
     public class ButtonsTest: BaseTest
     {
         [Test]
-        public void PerformButtonDoubleClick()  // performing double click on the appropriate button
-        {                                       // and verifying the message displayed
+        // performing double click on the appropriate button and verifying the message displayed
+        public void PerformButtonDoubleClick() 
+        {                                       
             ButtonsPage.OpenButtonsPage();
             ButtonsPage.PerformButtonDoubleClick();
             Assert.IsTrue(ButtonsPage.IsDoubleClickMessageDisplayed());   // verifying that message appeared after double click
@@ -15,8 +16,9 @@ namespace Hometask.Tests
         }
         
         [Test]
-        public void PerformRightButtonClick()  // performing right click on the appropriate button
-        {                                       // and verifying the message displayed
+        // performing right click on the appropriate button and verifying the message displayed
+        public void PerformRightButtonClick()  
+        {                                       
             ButtonsPage.OpenButtonsPage();
             ButtonsPage.PerformRightClickOnTheButton();
             Assert.IsTrue(ButtonsPage.IsRightClickMessageDisplayed());   // verifying that message appeared after right click
@@ -24,8 +26,9 @@ namespace Hometask.Tests
         }
         
         [Test]
-        public void PerformButtonClick()  // performing click on the appropriate button
-        {                                       // and verifying the message displayed
+        // performing click on the appropriate button and verifying the message displayed
+        public void PerformButtonClick()  
+        {                                       
             ButtonsPage.OpenButtonsPage();
             ButtonsPage.PerformClickOnTheButton();
             Assert.IsTrue(ButtonsPage.IsClickMessageDisplayed());   // verifying that message appeared after button click

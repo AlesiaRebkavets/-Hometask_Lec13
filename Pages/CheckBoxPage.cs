@@ -2,52 +2,37 @@
 
 namespace Hometask.Pages
 {
-    public class CheckBoxPage: BasePage
+    public class CheckBoxPage: Browser
     {
         // saving locators of CheckBox page
-        private static By _homeCollapseButtonLocator = By.XPath("//label[@for=\"tree-node-home\"]/../button");
-        private static By _documentsCollapseButtonLocator = By.XPath("//label[@for=\"tree-node-documents\"]/../button");
-        private static By _officeCollapseButtonLocator = By.XPath("//label[@for=\"tree-node-office\"]/../button");
-        private static By _privateCheckboxLocator = By.XPath("//label[@for=\"tree-node-private\"]/span[1]");
-        private static By _classifiedCheckboxLocator = By.XPath("//label[@for=\"tree-node-classified\"]/span");
-        private static By _youHaveSelectedLabelTextPrivateOptionLocator = By.XPath("//span[text()=\"private\"]");
+        private const string CheckBoxPageUrl = "https://demoqa.com/checkbox";
+        private static By _homeCollapseButtonLocator = By.XPath("//button[..//@for='tree-node-home']");
+        private static By _documentsCollapseButtonLocator = By.XPath("//label[@for='tree-node-documents']/../button");
+        private static By _officeCollapseButtonLocator = By.XPath("//label[@for='tree-node-office']/../button");
+        private static By _privateCheckboxLocator = By.XPath("//label[@for='tree-node-private']/span[1]");
+        private static By _classifiedCheckboxLocator = By.XPath("//label[@for='tree-node-classified']/span");
+        private static By _youHaveSelectedLabelTextPrivateOptionLocator = By.XPath("//span[text()='private']");
         private static By _youHaveSelectedLabelTextClassifiedOptionLocator = By.XPath("//span[text()='classified']");
 
-        public static void OpenCheckBoxPage()                               // method opens CheckBox page
-        {
-            OpenBasePage();
-            OpenElementsPage();
-            OpenCheckBoxElementPage();
-        }
+        public static void OpenCheckBoxPage() => Driver().Navigate().GoToUrl(CheckBoxPageUrl);
+        // method opens CheckBox page
 
-        public static void ClickHomeCollapseButton()                         // method clicks Home Collapse button 
-        {
-            Driver().FindElement(_homeCollapseButtonLocator).Click();
-        }
-        
-        public static void ClickDocumentsCollapseButton()                    // method clicks Documents Collapse button 
-        {
-            Driver().FindElement(_documentsCollapseButtonLocator).Click();
-        }
-        
-        public static void ClickOfficeCollapseButton()                       // method clicks Office Collapse button 
-        {
-            Driver().FindElement(_officeCollapseButtonLocator).Click();
-        }
-        
-        public static void ClickPrivateCheckbox()                            // method checks Private Checkbox 
-        {
-            Driver().FindElement(_privateCheckboxLocator).Click();
-        }
-        
-        public static void ClickClassifiedCheckbox()                        // method checks Classified Checkbox 
-        {
-            Driver().FindElement(_classifiedCheckboxLocator).Click();
-        }
-        
-        public static string GetDisplayedFinalText()                       // method returns displayed final text
-        {
-            return $"{Driver().FindElement(_youHaveSelectedLabelTextPrivateOptionLocator).Text} {Driver().FindElement(_youHaveSelectedLabelTextClassifiedOptionLocator).Text}";
-        }
+        public static void ClickHomeCollapseButton() => Driver().FindElement(_homeCollapseButtonLocator).Click();
+        // method clicks Home Collapse button 
+
+        public static void ClickDocumentsCollapseButton() => Driver().FindElement(_documentsCollapseButtonLocator).Click();
+        // method clicks Documents Collapse button 
+
+        public static void ClickOfficeCollapseButton() => Driver().FindElement(_officeCollapseButtonLocator).Click();
+        // method clicks Office Collapse button 
+
+        public static void ClickPrivateCheckbox() => Driver().FindElement(_privateCheckboxLocator).Click();
+        // method checks Private Checkbox 
+
+        public static void ClickClassifiedCheckbox() => Driver().FindElement(_classifiedCheckboxLocator).Click();
+        // method checks Classified Checkbox 
+
+        public static string GetDisplayedFinalText() => $"{Driver().FindElement(_youHaveSelectedLabelTextPrivateOptionLocator).Text} {Driver().FindElement(_youHaveSelectedLabelTextClassifiedOptionLocator).Text}"; 
+        // method returns displayed final text
     }
 }
