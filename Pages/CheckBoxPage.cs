@@ -1,38 +1,61 @@
-﻿using OpenQA.Selenium;
+﻿using Hometask_Lec13.Wrappers;
+using OpenQA.Selenium;
 
 namespace Hometask.Pages
 {
-    public class CheckBoxPage: Browser
+    public class CheckBoxPage: BasePage
     {
         // saving locators of CheckBox page
-        private const string CheckBoxPageUrl = "https://demoqa.com/checkbox";
-        private static By _homeCollapseButtonLocator = By.XPath("//button[..//@for='tree-node-home']");
-        private static By _documentsCollapseButtonLocator = By.XPath("//label[@for='tree-node-documents']/../button");
-        private static By _officeCollapseButtonLocator = By.XPath("//label[@for='tree-node-office']/../button");
-        private static By _privateCheckboxLocator = By.XPath("//label[@for='tree-node-private']/span[1]");
-        private static By _classifiedCheckboxLocator = By.XPath("//label[@for='tree-node-classified']/span");
-        private static By _youHaveSelectedLabelTextPrivateOptionLocator = By.XPath("//span[text()='private']");
-        private static By _youHaveSelectedLabelTextClassifiedOptionLocator = By.XPath("//span[text()='classified']");
+        private BaseElement _homeCollapseButton = new BaseElement(By.XPath("//*[@type='button'][..//@for='tree-node-home']"));
+        private BaseElement _documentsCollapseButton = new BaseElement(By.XPath("//*[@for='tree-node-documents']/../*[@type='button']"));
+        private BaseElement _officeCollapseButton = new BaseElement(By.XPath("//*[@for='tree-node-office']/../*[@type='button']"));
+        private BaseElement _privateCheckbox = new BaseElement(By.XPath("//*[@for='tree-node-private']"));
+        private BaseElement _classifiedCheckbox =
+            new BaseElement(By.XPath("//*[@for='tree-node-classified']"));
+        private BaseElement _youHaveSelectedLabelTextPrivateOption =
+            new BaseElement(By.XPath("//*[@class='text-success'][text()='private']"));
+        private BaseElement _youHaveSelectedLabelTextClassifiedOption =
+            new BaseElement(By.XPath("//*[@class='text-success'][text()='classified']"));
 
-        public static void OpenCheckBoxPage() => Driver().Navigate().GoToUrl(CheckBoxPageUrl);
-        // method opens CheckBox page
+        // passing URL to the constructor
+        public CheckBoxPage(): base("https://demoqa.com/checkbox"){}
 
-        public static void ClickHomeCollapseButton() => Driver().FindElement(_homeCollapseButtonLocator).Click();
         // method clicks Home Collapse button 
+        public void ClickHomeCollapseButton()
+        {
+            _homeCollapseButton.ScrollIntoViewScript();
+            _homeCollapseButton.Click();
+        }
 
-        public static void ClickDocumentsCollapseButton() => Driver().FindElement(_documentsCollapseButtonLocator).Click();
         // method clicks Documents Collapse button 
+        public void ClickDocumentsCollapseButton()
+        {
+            _documentsCollapseButton.ScrollIntoViewScript();
+            _documentsCollapseButton.Click();
+        }
 
-        public static void ClickOfficeCollapseButton() => Driver().FindElement(_officeCollapseButtonLocator).Click();
         // method clicks Office Collapse button 
+        public void ClickOfficeCollapseButton()
+        {
+            _officeCollapseButton.ScrollIntoViewScript();
+            _officeCollapseButton.Click();
+        }
 
-        public static void ClickPrivateCheckbox() => Driver().FindElement(_privateCheckboxLocator).Click();
         // method checks Private Checkbox 
+        public void ClickPrivateCheckbox()
+        {
+            _privateCheckbox.ScrollIntoViewScript();
+            _privateCheckbox.Click();
+        }
 
-        public static void ClickClassifiedCheckbox() => Driver().FindElement(_classifiedCheckboxLocator).Click();
         // method checks Classified Checkbox 
+        public void ClickClassifiedCheckbox()
+        {
+            _classifiedCheckbox.ScrollIntoViewScript();
+            _classifiedCheckbox.Click();
+        }
 
-        public static string GetDisplayedFinalText() => $"{Driver().FindElement(_youHaveSelectedLabelTextPrivateOptionLocator).Text} {Driver().FindElement(_youHaveSelectedLabelTextClassifiedOptionLocator).Text}"; 
         // method returns displayed final text
+        public string GetDisplayedFinalText => $"{_youHaveSelectedLabelTextPrivateOption.Text} {_youHaveSelectedLabelTextClassifiedOption.Text}";
     }
 }

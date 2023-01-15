@@ -1,24 +1,31 @@
-﻿using OpenQA.Selenium;
+﻿using System.Threading;
+using Hometask_Lec13.Wrappers;
+using OpenQA.Selenium;
 
 namespace Hometask.Pages
 {
-    public class RadioButtonPage: Browser
+    public class RadioButtonPage: BasePage
     {
         // saving locators of RadioButton page
-        private const string RadioButtonPageUrl = "https://demoqa.com/radio-button";
-        private static By _impressiveRadioButtonLocator = By.XPath("//label[text()='Impressive']");
-        private static By _youHaveSelectedLabelLocator = By.XPath("//*[contains(text(), 'You have selected')]/span");
+        private BaseElement _impressiveRadioButton = new BaseElement(By.XPath("//*[text()='Impressive']"));
+        private BaseElement _youHaveSelectedLabel =
+            new BaseElement(By.XPath("//*[@class='text-success'][text()='Impressive']"));
 
-        public static void OpenRadioButtonPage() => Driver().Navigate().GoToUrl(RadioButtonPageUrl);
-        // method opens RadioButton page
+        // passing URL to the constructor
+        public RadioButtonPage(): base("https://demoqa.com/radio-button"){}
 
-        public static void ClickImpressiveRadioButton() => Driver().FindElement(_impressiveRadioButtonLocator).Click();
         // method clicks Impressive Radio Button
+        public void ClickImpressiveRadioButton()
+        {
+            Thread.Sleep(1000);
+            _impressiveRadioButton.ScrollIntoViewScript();
+            _impressiveRadioButton.Click();
+        }
 
-        public static bool IsYouHaveSelectedLabelDisplayed() => Driver().FindElement(_youHaveSelectedLabelLocator).Displayed;
         // method returns 'true' if YouHaveSelectedLabel is displayed
+        public bool IsYouHaveSelectedLabelDisplayed => _youHaveSelectedLabel.Displayed;
 
-        public static string GetYouHaveSelectedLabelText() => Driver().FindElement(_youHaveSelectedLabelLocator).Text;
         // method returns text of YouHaveSelected label
+        public string GetYouHaveSelectedLabelText => _youHaveSelectedLabel.Text;
     }
 }

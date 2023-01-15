@@ -1,62 +1,63 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
+using Hometask_Lec13.Wrappers;
 using OpenQA.Selenium;
 
 namespace Hometask.Pages
 {
-    public class ButtonsPage: Browser
+    public class ButtonsPage: BasePage
     {
         // saving locators of Buttons page
-        private const string ButtonsPageUrl = "https://demoqa.com/buttons";
-        private static By _doubleClickButtonLocator = By.Id("doubleClickBtn");
-        private static By _rightClickButtonLocator = By.Id("rightClickBtn");
-        private static By _clickButtonLocator = By.XPath("//button[text()='Click Me']");
-        private static By _doubleClickMessageLocator = By.Id("doubleClickMessage");
-        private static By _rightClickMessageLocator = By.Id("rightClickMessage");
-        private static By _clickMessageLocator = By.Id("dynamicClickMessage");
-        
-        public static void OpenButtonsPage() => Driver().Navigate().GoToUrl(ButtonsPageUrl);  
-        // method opens Buttons page
+        private BaseElement _doubleClickButton = new BaseElement(By.Id("doubleClickBtn"));
+        private BaseElement _rightClickButton = new BaseElement(By.Id("rightClickBtn")); 
+        private BaseElement _clickButton = new BaseElement(By.XPath("//*[text()='Click Me']"));
+        private BaseElement _doubleClickMessage = new BaseElement(By.Id("doubleClickMessage"));
+        private BaseElement _rightClickMessage = new BaseElement(By.Id("rightClickMessage"));
+        private BaseElement _clickMessage = new BaseElement(By.Id("dynamicClickMessage"));
 
-        public static void PerformButtonDoubleClick()         
-        {
-            Thread.Sleep(1000);
-            ScrollIntoViewScript(_doubleClickButtonLocator);
-            DriverActions.DoubleClick(Driver().FindElement(_doubleClickButtonLocator)).Build().Perform();  
-        }
+        // passing URL to the constructor
+        public ButtonsPage(): base("https://demoqa.com/buttons"){}
+
         // performing double click
-        
-        public static void PerformRightClickOnTheButton()     
+        public void PerformButtonDoubleClick()         
         {
             Thread.Sleep(1000);
-            ScrollIntoViewScript(_rightClickButtonLocator);
-            DriverActions.ContextClick(Driver().FindElement(_rightClickButtonLocator)).Build().Perform(); 
+            _doubleClickButton.ScrollIntoViewScript();
+            _doubleClickButton.DoubleClick();
         }
+
         // performing right click
-        
-        public static void PerformClickOnTheButton()          
+        public void PerformRightClickOnTheButton()     
         {
             Thread.Sleep(1000);
-            ScrollIntoViewScript(_clickButtonLocator);
-            DriverActions.Click(Driver().FindElement(_clickButtonLocator)).Build().Perform();
+            _rightClickButton.ScrollIntoViewScript();
+            _rightClickButton.ContextClick();
         }
+
         // performing button click
-        
-        public static string GetDoubleClickMessage() => Driver().FindElement(_doubleClickMessageLocator).Text;  
+        public void PerformClickOnTheButton()          
+        {
+            Thread.Sleep(1000);
+            _clickButton.ScrollIntoViewScript();
+            _clickButton.Click();
+        }
+
         // method returns text of the message displayed after successful double click
-        
-        public static string GetRightClickMessage() => Driver().FindElement(_rightClickMessageLocator).Text;
+        public string GetDoubleClickMessage => _doubleClickMessage.Text;
+
         // method returns text of the message displayed after successful right click
-        
-        public static string GetClickMessage() => Driver().FindElement(_clickMessageLocator).Text;
+        public string GetRightClickMessage => _rightClickMessage.Text;
+
         // method returns text of the message displayed after successful click
-        
-        public static bool IsDoubleClickMessageDisplayed() => Driver().FindElement(_doubleClickMessageLocator).Displayed;
+        public string GetClickMessage => _clickMessage.Text;
+
         // method returns 'true' if DoubleClick Message is displayed
-        
-        public static bool IsRightClickMessageDisplayed() => Driver().FindElement(_rightClickMessageLocator).Displayed;
-        // method returns 'true' if RightClick Message is displayed    
-        
-        public static bool IsClickMessageDisplayed() => Driver().FindElement(_clickMessageLocator).Displayed; 
+        public bool IsDoubleClickMessageDisplayed => _doubleClickMessage.Displayed;
+
+        // method returns 'true' if RightClick Message is displayed 
+        public bool IsRightClickMessageDisplayed => _rightClickMessage.Displayed;
+
         // method returns 'true' if Click Message is displayed  
+        public bool IsClickMessageDisplayed => _clickMessage.Displayed;
     }
 }

@@ -5,22 +5,24 @@ namespace Hometask.Tests
 {
     public class RadioButtonTest: BaseTest
     {
-        [Test]
+        private RadioButtonPage _radioButtonPage = new RadioButtonPage();
+        
         // verifying that YouHaveSelected label is displayed when any Radio Button is checked
+        [Test]
         public void IsYouHaveSelectedLabelDisplayed()                         
         {                                                                    
-            RadioButtonPage.OpenRadioButtonPage();
-            RadioButtonPage.ClickImpressiveRadioButton();
-            Assert.IsTrue(RadioButtonPage.IsYouHaveSelectedLabelDisplayed());
+            _radioButtonPage.OpenPage();
+            _radioButtonPage.ClickImpressiveRadioButton();
+            Assert.IsTrue(_radioButtonPage.IsYouHaveSelectedLabelDisplayed);
         }
         
-        [Test]
         // verifying that Radio Button was successfully checked
+        [Test]
         public void SelectRadioButton()                                        
         {
-            RadioButtonPage.OpenRadioButtonPage();
-            RadioButtonPage.ClickImpressiveRadioButton();
-            Assert.AreEqual("Impressive", RadioButtonPage.GetYouHaveSelectedLabelText());
+            _radioButtonPage.OpenPage();
+            _radioButtonPage.ClickImpressiveRadioButton();
+            Assert.AreEqual("Impressive", _radioButtonPage.GetYouHaveSelectedLabelText);
         }
     }
 }

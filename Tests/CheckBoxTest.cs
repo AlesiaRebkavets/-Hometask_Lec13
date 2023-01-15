@@ -5,17 +5,19 @@ namespace Hometask.Tests
 {
     public class CheckBoxTest: BaseTest
     {
-        [Test]
+        private CheckBoxPage _checkBoxPage = new CheckBoxPage();
+        
         // verifying that CheckBox elements are successfully checked
+        [Test]
         public void IsCheckBoxElementSelected()             
         {
-            CheckBoxPage.OpenCheckBoxPage();
-            CheckBoxPage.ClickHomeCollapseButton();
-            CheckBoxPage.ClickDocumentsCollapseButton();
-            CheckBoxPage.ClickOfficeCollapseButton();
-            CheckBoxPage.ClickPrivateCheckbox();
-            CheckBoxPage.ClickClassifiedCheckbox();
-            Assert.AreEqual("private classified", CheckBoxPage.GetDisplayedFinalText());
+            _checkBoxPage.OpenPage();
+            _checkBoxPage.ClickHomeCollapseButton();
+            _checkBoxPage.ClickDocumentsCollapseButton();
+            _checkBoxPage.ClickOfficeCollapseButton();
+            _checkBoxPage.ClickPrivateCheckbox();
+            _checkBoxPage.ClickClassifiedCheckbox();
+            Assert.AreEqual("private classified", _checkBoxPage.GetDisplayedFinalText);
         }
     }
 }

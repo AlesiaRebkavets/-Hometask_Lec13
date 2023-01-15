@@ -1,45 +1,46 @@
-﻿using OpenQA.Selenium;
+﻿using Hometask_Lec13.Wrappers;
+using OpenQA.Selenium;
 
 namespace Hometask.Pages
 {
-    public class TextBoxPage : Browser
+    public class TextBoxPage : BasePage
     {
         // saving locators of TextBox page
-        private const string TextBoxPageUrl = "https://demoqa.com/text-box";
-        private static By _textBoxPageHeader = By.XPath("//*[text()='Text Box']");
-        private static By _fullNameTextBoxLocator = By.Id("userName");
-        private static By _emailTextBoxLocator = By.Id("userEmail");
-        private static By _currentAddressTextBoxLocator = By.XPath("//textarea[@id='currentAddress']");
-        private static By _permanentAddressTextBoxLocator = By.Id("permanentAddress");
-        private static By _submitButtonLocator = By.Id("submit");
-        private static By _currentAddressResultLocator = By.XPath("//*[@id='output']//p[@id='currentAddress']");
-
-        public static void OpenTextBoxPage() => Driver().Navigate().GoToUrl(TextBoxPageUrl);
-        // method opens TextBox page
+        private BaseElement _textBoxPageHeader = new BaseElement(By.XPath("//*[text()='Text Box']"));
+        private BaseElement _fullNameTextBox = new BaseElement(By.Id("userName"));
+        private BaseElement _emailTextBox = new BaseElement(By.Id("userEmail"));
+        private BaseElement _currentAddressTextBox = new BaseElement(By.XPath("//textarea[@id='currentAddress']"));
+        private BaseElement _permanentAddressTextBox = new BaseElement(By.Id("permanentAddress"));
+        private BaseElement _submitButton = new BaseElement(By.Id("submit"));
+        private BaseElement _currentAddressResult =
+            new BaseElement(By.XPath("//*[@id='output']//*[@id='currentAddress']"));
         
-        public static string GetTextBoxPageHeader() => Driver().FindElement(_textBoxPageHeader).Text;  
+        // passing URL to the constructor
+        public TextBoxPage(): base("https://demoqa.com/text-box"){}
+        
         // returns text of TextBox page header
+        public string GetTextBoxPageHeader => _textBoxPageHeader.Text;
 
-        public static void EnterFullName(string fullName) => Driver().FindElement(_fullNameTextBoxLocator).SendKeys(fullName);
         // enters string data to Full Name field
+        public void EnterFullName(string fullName) => _fullNameTextBox.SendKeys(fullName);
 
-        public static void EnterEmail(string email) => Driver().FindElement(_emailTextBoxLocator).SendKeys(email);
         // enters string data to Email field
+        public void EnterEmail(string email) => _emailTextBox.SendKeys(email);
 
-        public static void EnterCurrentAddress(string currentAddress) => Driver().FindElement(_currentAddressTextBoxLocator).SendKeys(currentAddress);
         // enters string data to Current Address field
-        
-        public static void EnterPermanentAddress(string permanentAddress) => Driver().FindElement(_permanentAddressTextBoxLocator).SendKeys(permanentAddress);
-        // enters string data to Permanent Address field
+        public void EnterCurrentAddress(string currentAddress) => _currentAddressTextBox.SendKeys(currentAddress);
 
-        public static void ClickSubmitButton()          
-        {
-            ScrollIntoViewScript(_submitButtonLocator);
-            Driver().FindElement(_submitButtonLocator).Click();
-        }
+        // enters string data to Permanent Address field
+        public void EnterPermanentAddress(string permanentAddress) => _permanentAddressTextBox.SendKeys(permanentAddress);
+
         // clicks Submit button
-        
-        public static string GetCurrentAddressResultText() => Driver().FindElement(_currentAddressResultLocator).Text;  
+        public void ClickSubmitButton()          
+        {
+            _submitButton.ScrollIntoViewScript();
+            _submitButton.Click();
+        }
+
         // returns Current Address (that appeared when the form is submitted)
+        public string GetCurrentAddressResultText => _currentAddressResult.Text;
     }
 }

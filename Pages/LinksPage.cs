@@ -1,37 +1,49 @@
-﻿using OpenQA.Selenium;
+﻿using Hometask_Lec13.Wrappers;
+using OpenQA.Selenium;
 
 namespace Hometask.Pages
 {
-    public class LinksPage: Browser
+    public class LinksPage: BasePage
     {
         // saving locators of Links page
-        private const string LinksPageUrl = "https://demoqa.com/links";
-        private static By _homeLinkLocator = By.Id("simpleLink");
-        private static By _homeijmOALinkLocator = By.Id("dynamicLink");
-        private static By _createdLinkLocator = By.Id("created");
-        private static By _toolsQaImageLocator = By.XPath("//img[@src='/images/Toolsqa.jpg']");
-        private static By _responseStatusCodeLocator = By.XPath("//*[@id = 'linkResponse']/b[1]");
-        private static By _responseStatusTextLocator = By.XPath("//*[@id = 'linkResponse']/b[2]");
+        private BaseElement _homeLink = new BaseElement(By.Id("simpleLink"));
+        private BaseElement _homeijmOALink = new BaseElement(By.Id("dynamicLink"));
+        private BaseElement _createdLink = new BaseElement(By.Id("created"));
+        private BaseElement _toolsQaImage = new BaseElement(By.XPath("//img[@src='/images/Toolsqa.jpg']"));
+        private BaseElement _responseStatusCode = new BaseElement(By.XPath("//*[@id='linkResponse']/*[text()='201']"));
+        private BaseElement _responseStatusText = new BaseElement(By.XPath("//*[@id='linkResponse']/*[text()='Created']"));
 
-        public static void OpenLinksPage() => Driver().Navigate().GoToUrl(LinksPageUrl);
-        // method opens Links page
+        // passing URL to the constructor
+        public LinksPage(): base("https://demoqa.com/links"){}
 
-        public static void ClickHomeLink() => Driver().FindElement(_homeLinkLocator).Click();
         // method clicks "Home" link
+        public void ClickHomeLink()
+        {
+            _homeLink.ScrollIntoViewScript();
+            _homeLink.Click();
+        } 
 
-        public static void ClickHomeijmOALink() => Driver().FindElement(_homeijmOALinkLocator).Click();
         // method clicks "HomeijmOA" link
+        public void ClickHomeijmOALink()
+        {
+            _homeLink.ScrollIntoViewScript();
+            _homeijmOALink.Click();
+        }
 
-        public static void ClickCreatedLink() => Driver().FindElement(_createdLinkLocator).Click();
         // method clicks "Created" link
+        public void ClickCreatedLink()
+        {
+            _createdLink.ScrollIntoViewScript();
+            _createdLink.Click();
+        }
 
-        public static bool IsHomePageOpened() => Driver().FindElement(_toolsQaImageLocator).Displayed;
         // method returns 'true' if Home page is opened
+        public bool IsHomePageOpened => _toolsQaImage.Displayed;
 
-        public static string GetTextOfResponseStatusCode() => Driver().FindElement(_responseStatusCodeLocator).Text;
         // method returns text of displayed status code
+        public string GetTextOfResponseStatusCode => _responseStatusCode.Text;
 
-        public static string GetTextOfResponseStatusText() => Driver().FindElement(_responseStatusTextLocator).Text;
         // method returns text of displayed response status
+        public string GetTextOfResponseStatusText => _responseStatusText.Text;
     }
 }

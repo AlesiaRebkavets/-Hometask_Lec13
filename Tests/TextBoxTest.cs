@@ -5,25 +5,27 @@ namespace Hometask.Tests
 {
     public class TextBoxTest: BaseTest
     {
-        [Test]
+        private TextBoxPage _textBoxPage = new TextBoxPage();
+        
         // verifying that TextBox Element page is opened successfully
+        [Test]
         public void TextBoxElementPageIsOpened()    
         {
-            TextBoxPage.OpenTextBoxPage();
-            Assert.IsTrue(TextBoxPage.GetTextBoxPageHeader().Equals("Text Box"));
+            _textBoxPage.OpenPage();
+            Assert.IsTrue(_textBoxPage.GetTextBoxPageHeader.Equals("Text Box"));
         }
 
-        [Test]
         // verifying that form is filled and submitted successfully
+        [Test]
         public void IsFormFilledAndSubmitted()     
         {
-            TextBoxPage.OpenTextBoxPage();
-            TextBoxPage.EnterFullName("Vasya");
-            TextBoxPage.EnterEmail("iamvasya@gmail.com");
-            TextBoxPage.EnterCurrentAddress("ulica Pushkina, dom Kolotushkina");
-            TextBoxPage.EnterPermanentAddress("Konstitucijos str.");
-            TextBoxPage.ClickSubmitButton();
-            Assert.AreEqual("Current Address :ulica Pushkina, dom Kolotushkina", TextBoxPage.GetCurrentAddressResultText());
+            _textBoxPage.OpenPage();
+            _textBoxPage.EnterFullName("Vasya");
+            _textBoxPage.EnterEmail("iamvasya@gmail.com");
+            _textBoxPage.EnterCurrentAddress("ulica Pushkina, dom Kolotushkina");
+            _textBoxPage.EnterPermanentAddress("Konstitucijos str.");
+            _textBoxPage.ClickSubmitButton();
+            Assert.AreEqual("Current Address :ulica Pushkina, dom Kolotushkina", _textBoxPage.GetCurrentAddressResultText);
         }
     }
 }

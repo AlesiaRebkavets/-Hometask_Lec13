@@ -12,36 +12,33 @@ namespace Hometask
         private static IJavaScriptExecutor _javascriptExecutor;
         private static Actions _driverActions;
 
+        // initialisation of webDriver
         public static IWebDriver Driver()                    
         {
             if (_driver == null)
             {
                 _driver = new ChromeDriver();
-                _javascriptExecutor = (IJavaScriptExecutor)Driver();
-                _driverActions = new Actions(Driver());
             }
-
             return _driver;
         }
-        // initialisation of webDriver, driverAction and javascriptExecutor
 
-        public static void Maximize() => Driver().Manage().Window.Maximize();
+        // initialisation of javascriptExecutor
+        public static IJavaScriptExecutor JavaScriptExecutor() => (IJavaScriptExecutor)Driver();
+
+        // initialisation of driverAction
+        public static Actions DriverActions() => new Actions(Driver());
+
         // maximizing of browser window
+        public static void Maximize() => Driver().Manage().Window.Maximize();
 
+        // closes all browser tabs
         public static void Quit()                          
         {
             Driver().Quit();
             _driver = null;
         }
-        // closes all browser tabs
 
-        public static void SetImplicitlyWait() => Driver().Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
         // ImplicitlyWait Timeout is 20 sec
-        
-        public static void ScrollIntoViewScript(By locator) => _javascriptExecutor.ExecuteScript("arguments[0].scrollIntoView()", Driver().FindElement(locator));       
-        // ScrollIntoView js script
-
-        public static Actions DriverActions => _driverActions;          
-        // method returns _driverActions
+        public static void SetImplicitlyWait() => Driver().Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
     }
 }
